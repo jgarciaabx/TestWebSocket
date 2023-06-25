@@ -19,6 +19,9 @@ public class MainActivityJava extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        wss://ws.sib.mobile.abexacloud.com/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2
+//        ws://161.132.99.147:2029/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2
+
         String url = "wss://ws.sib.mobile.abexacloud.com/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2";
         Log.i("WebSocket", "URL !!: " + url);
         connectWebSocket(url);
