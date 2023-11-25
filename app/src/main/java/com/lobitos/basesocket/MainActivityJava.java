@@ -3,6 +3,8 @@ package com.lobitos.basesocket;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import org.java_websocket.client.WebSocketClient;
@@ -14,18 +16,39 @@ public class MainActivityJava extends AppCompatActivity {
 
     private WebSocketClient webSocketClient;
 
+
+//      String url = "wss://ws.sib.mobile.abexacloud.com/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2";
+//        wss://ws.sib.mobile.abexacloud.com/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2
+//        ws://161.132.99.147:2029/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2
+
+    String url = "ws://161.132.99.147:2029/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        wss://ws.sib.mobile.abexacloud.com/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2
-//        ws://161.132.99.147:2029/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2
+        Button reconnectButton = findViewById(R.id.reconnectButton);
+        reconnectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Maneja el clic del botón para reconectar manualmente
+                reconnectWebSocket();
+            }
+        });
 
-        String url = "wss://ws.sib.mobile.abexacloud.com/ws?codDispositivo=31&codTipoDispositivo=10&codEmpresa=25&imei=1245698741&telefono=99999999&idConexion=452&v=sibv12.0.1.sdk2";
+
+
+
         Log.i("WebSocket", "URL !!: " + url);
         connectWebSocket(url);
     }
+
+    private void reconnectWebSocket() {
+        // Intenta reconectar inmediatamente
+        Log.i("WebSocket", "Intentando reconectar manualmente...");
+        connectWebSocket(url);
+    }
+
 
     private void connectWebSocket(String url) {
         try {
